@@ -1,1 +1,1 @@
-alert('webpack')
+require('./assets/css/main.css')

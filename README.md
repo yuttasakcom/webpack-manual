@@ -5,6 +5,9 @@
   - [Build Webpack](#build)
   - [Watch Webpack](#watch)
 - บทที่ 2
+  - [Loader](#loader)
+  - [Babel](#babel)
+
 ## Init
 `npm init -y`<br>
 `npm install webpack --save-dev`<br>
@@ -45,3 +48,22 @@ module.exports = {
 }
 ```
 /\*หมายเหตุ\*/ แก้ไข script การ build ที่ package.json เป็น `"build": "webpack"`
+
+## Loader
+ติดตั้ง css-loader & transformers style พิมพ์คำสั่ง `npm install css-loader style-loader --save-dev`<br>
+สร้าง rule ใน webpack.config.js ประมาณนี้<br>
+```javascript
+module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }
+        ]
+    }
+```
+
+## Bable
+ติดตั้งพิมพ์คำสั่ง `npm install --save-dev babel-loader babel-core`<br>
+ลิงค์อ้างอิง [Babel](https://babeljs.io/docs/setup/#installation)
+เพิ่ม rules `{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }`
