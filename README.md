@@ -7,6 +7,7 @@
 - บทที่ 2
   - [Loader](#loader)
   - [Babel](#babel)
+  - [Minification](#minification)
 
 ## Init
 `npm init -y`<br>
