@@ -13,6 +13,7 @@
 - [Long-Term Caching](#long-term_caching)
 - [Optimization Image](#optimization_image)
 - [Manifests](#manifests)
+- [HTML TEMPLATE](#html_template)
 
 ## Init
 `npm init -y`<br>
@@ -213,3 +214,21 @@ new CleanWebpackPlugin(['dist'], {
 ```
 
 ## Manifests
+
+## HTML_TEMPLATE
+ติดตั้ง `npm i -D html-webpack-plugin`<br>
+```javascript
+--- require
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+--- plugin
+new HtmlWebpackPlugin({
+    template: 'index.html',
+    inject: true,
+    minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+    },
+}),
+```

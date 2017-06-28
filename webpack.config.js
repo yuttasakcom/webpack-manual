@@ -4,6 +4,7 @@ const glob = require('glob');
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const PurifyCSSPlugin = require('purifycss-webpack')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const inProduction = (process.env.NODE_ENV === 'prod')
 
 module.exports = {
@@ -56,12 +57,20 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({
             minimize: inProduction
         }),
-
         new CleanWebpackPlugin(['dist'], {
             _root: __dirname,
             verbose: true,
             dry: false
-        })
+        }),
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true
+            },
+        }),
     ]
 }
 
