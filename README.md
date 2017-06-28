@@ -64,6 +64,32 @@ module: {
 ```
 
 ## Babel
-ติดตั้งพิมพ์คำสั่ง `npm install --save-dev babel-loader babel-core`<br>
-ลิงค์อ้างอิง [Babel](https://babeljs.io/docs/setup/#installation)
-เพิ่ม rules `{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }`
+ติดตั้ง babel-loader & babel-core พิมพ์คำสั่ง `npm install --save-dev babel-loader babel-core`<br>
+ลิงค์อ้างอิง [Babel](https://babeljs.io/docs/setup/#installation)<br>
+เพิ่ม rules `{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }`<br>
+
+ติดตั้ง babel-cli & babel-preset-es2015 พิมพ์คำสั่ง `npm install --save-dev babel-cli babel-preset-es2015`<br>
+สร้างไฟล์ .bablerc แล้วกำหนดค่าดังนี้ `{ "presets": ["es2015"] }`
+
+## Minification
+สร้าง plugins ใน webpack.config.js `plugins: []`<br>
+เพิ่มเงื่อนไขการ minifile เฉพาะ production ที่ webpack.config.js<br>
+```javascript
+module.exports = {
+    ...
+    plugins: []
+}
+if (process.env.NODE_EN === 'production') {
+    module.exports.plugins.push(
+        new webpack.optimize.UglifyJsPlugin()
+    )
+} 
+```
+เพิ่ม scripts production ที่ package.json `"prod": "NODE_ENV=production webpack"`<br>
+แก้ไข scripts ใหม่ดังนี้<br>
+```json
+"scripts": {
+    "dev": "webpack --watch",
+    "prod": "NODE_ENV=production webpack"
+},
+```
