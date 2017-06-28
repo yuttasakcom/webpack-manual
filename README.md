@@ -1,5 +1,5 @@
 ## Webpack 101
-##สารบัญ
+## สารบัญ
 
 ## Init Webpack
 `npm init -y`<br>
@@ -17,7 +17,7 @@ Use --help to display the CLI options.
 
 ## Watch Webpack
 `webpack src/main.js dist/bundle.js --watch`<br>
-สามารถกำหนดการ run command ที่ package.json ที่ key = script ได้ดังนี้<br>
+เพิ่ม script เพื่อ run command ที่ package.json ดังนี้<br>
 ```json
 "scripts": {
     "build": "webpack src/main.js dist/bundle.js",
