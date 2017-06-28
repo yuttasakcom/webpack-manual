@@ -4,7 +4,7 @@
 - [Build Webpack](#build)
 - [Watch Webpack](#watch)
 - [Loader](#loader)
-- [Babel](#babel)
+- [Babel(es2015)](#babel)
 - [Minification](#minification)
 - [Sass](#sass)
 - [Extract](#extract)
