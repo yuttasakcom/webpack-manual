@@ -10,6 +10,9 @@
 - [Extract](#extract)
 - [Relative URL](#relative_url)
 - [Purify CSS](#purify_css)
+- [Long-Term Caching](#long-term_caching)
+- [Optimization Image](#optimization_image)
+- [Manifests](#manifests)
 
 ## Init
 `npm init -y`<br>
