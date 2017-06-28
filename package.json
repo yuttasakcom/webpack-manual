@@ -1,0 +1,24 @@
+{
+  "name": "webpack101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack src/main.js dist/bundle.js",
+    "watch": "npm run build -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuttasakcom/webpack101.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yuttasakcom/webpack101/issues"
+  },
+  "homepage": "https://github.com/yuttasakcom/webpack101#readme",
+  "devDependencies": {
+    "webpack": "^3.0.0"
+  }
+}
