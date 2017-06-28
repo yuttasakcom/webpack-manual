@@ -8,6 +8,7 @@
 - [Minification](#minification)
 - [Sass](#sass)
 - [Extract](#extract)
+- [Relative URL](#relative)
 
 ## Init
 `npm init -y`<br>
@@ -108,7 +109,7 @@ if (process.env.NODE_EN === 'production') {
 ## Extract
 ติดตั้ง extract พิมพ์คำสั่ง `npm install --save-dev extract-text-webpack-plugin`<br>
 ลิงค์อ้างอิง [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)<br>
-ลิงค์อ้างอิง [webpack loaderoptions plugin](https://webpack.js.org/plugins/loader-options-plugin/)
+ลิงค์อ้างอิง [webpack loaderoptions plugin](https://webpack.js.org/plugins/loader-options-plugin/)<br>
 แก้ไข rules ที่ webpack.config.js ดังนี้<br>
 ```javascript
 module: {
@@ -131,3 +132,16 @@ plugins: [
 ]
 ```
 /\*หมายเหตุ\*/ ค่า inProduction มาจาก var inProduction = (process.env.NODE_ENV === 'prod')
+
+## Relative URL
+ติดตั้ง raw-loader & file-loader พิพม์คำสั่ง `npm install --save-dev raw-loader file-loader`<br>
+เพิ่ม rule<br>
+```javascript
+{
+    test: /\.png$/,
+    loader: 'file-loader',
+    options: {
+        name: '[name].[ext]'
+    }
+}
+```
