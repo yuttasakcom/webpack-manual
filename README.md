@@ -63,7 +63,7 @@ module: {
     }
 ```
 
-## Bable
+## Babel
 ติดตั้งพิมพ์คำสั่ง `npm install --save-dev babel-loader babel-core`<br>
 ลิงค์อ้างอิง [Babel](https://babeljs.io/docs/setup/#installation)
 เพิ่ม rules `{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }`
