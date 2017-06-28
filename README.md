@@ -133,7 +133,7 @@ plugins: [
 ```
 /\*หมายเหตุ\*/ ค่า inProduction มาจาก var inProduction = (process.env.NODE_ENV === 'prod')
 
-## Relative URL
+## Relative_URL
 ติดตั้ง raw-loader & file-loader พิพม์คำสั่ง `npm install --save-dev raw-loader file-loader`<br>
 เพิ่ม rule<br>
 ```javascript
