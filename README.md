@@ -155,9 +155,58 @@ plugins: [
 const glob = require('glob');
 const PurifyCSSPlugin = require('purifycss-webpack');
 
----plugin
+--- plugin
 new PurifyCSSPlugin({
     paths: glob.sync(path.join(__dirname, 'index.html')),
     minimize: inProduction
 })
 ```
+
+## Long-Term_Caching
+`npm i jquery clean-webpack-plugin -D`<br>
+set ค่า webpack.config.js ดังนี้<br>
+```javascript
+--- require
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+--- module
+entry: {
+    main: './src/main.js',
+    verdor: ['jquery']
+},
+output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].[chunkhash].js'
+}
+
+--- plugin
+new CleanWebpackPlugin(['dist'], {
+    _root: __dirname,
+    verbose: true,
+    dry: false
+})
+```
+
+## Optimization_Image
+ติดตั้ง `npm install img-loader --save-dev`<br>
+```javascript
+--- plugin
+{
+    test: /\.(svg|eot|ttf|woff|woff2)$/,
+    use: 'file-loader'
+},
+{
+    test: /\.(png|jpe?g|gif)$/,
+    loaders: [
+        {
+            loader: 'file-loader',
+            options: {
+                name: 'images/[name].[hash].[ext]'
+            }
+        },
+        'img-loader'
+    ]
+}
+```
+
+## Manifests

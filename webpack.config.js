@@ -3,18 +3,17 @@ const path = require("path")
 const glob = require('glob');
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
 const PurifyCSSPlugin = require('purifycss-webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const inProduction = (process.env.NODE_ENV === 'prod')
 
 module.exports = {
     entry: {
-        app: [
-            './src/main.js',
-            './src/assets/css/main.scss'
-        ]
+        main: './src/main.js',
+        verdor: ['jquery']
     },
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: '[name].js'
+        filename: '[name].[chunkhash].js'
     },
     module: {
         rules: [
@@ -31,11 +30,20 @@ module.exports = {
                 })
             },
             {
-                test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'images/[name].[hash].[ext]'
-                }
+                test: /\.(svg|eot|ttf|woff|woff2)$/,
+                use: 'file-loader'
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                loaders: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'images/[name].[hash].[ext]'
+                        }
+                    },
+                    'img-loader'
+                ]
             }
         ]
     },
@@ -48,6 +56,12 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({
             minimize: inProduction
         }),
+
+        new CleanWebpackPlugin(['dist'], {
+            _root: __dirname,
+            verbose: true,
+            dry: false
+        })
     ]
 }
 
