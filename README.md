@@ -1,11 +1,11 @@
 ## Webpack 101
 ## สารบัญ
 - บทที่ 1
-  - [Init Webpack](#init webpack)
-  - [Build Webpack](#build webpack)
-  - [Watch Webpack](#watch webpack)
+  - [Init Webpack](#init)
+  - [Build Webpack](#build)
+  - [Watch Webpack](#watch)
 
-## Init Webpack
+## Init
 `npm init -y`<br>
 `npm install webpack --save-dev`<br>
 ทดสอบเรียก webpack พิมพ์คำสั่ง `webpack`<br>
@@ -16,10 +16,10 @@ A configuration file could be named 'webpack.config.js' in the current directory
 Use --help to display the CLI options.
 ```
 
-## Build Webpack
+## Build
 `webpack src/main.js dist/bundle.js`<br>
 
-## Watch Webpack
+## Watch
 `webpack src/main.js dist/bundle.js --watch`<br>
 เพิ่ม script เพื่อ run command ที่ package.json ดังนี้<br>
 ```json
