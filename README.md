@@ -138,10 +138,10 @@ plugins: [
 เพิ่ม rule<br>
 ```javascript
 {
-    test: /\.png$/,
+    test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
     loader: 'file-loader',
     options: {
-        name: '[name].[ext]'
+        name: 'images/[name].[hash].[ext]'
     }
 }
 ```
