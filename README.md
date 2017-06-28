@@ -8,7 +8,7 @@
 - [Minification](#minification)
 - [Sass](#sass)
 - [Extract](#extract)
-- [Relative URL](#relative)
+- [Relative URL](#relative_url)
 
 ## Init
 `npm init -y`<br>
