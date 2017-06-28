@@ -1,7 +1,9 @@
 const webpack = require("webpack")
-const path    = require("path")
+const path = require("path")
+const glob = require('glob');
 const ExtractTextPlugin = require("extract-text-webpack-plugin")
-var inProduction = (process.env.NODE_ENV === 'prod')
+const PurifyCSSPlugin = require('purifycss-webpack')
+const inProduction = (process.env.NODE_ENV === 'prod')
 
 module.exports = {
     entry: {
@@ -39,10 +41,13 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('[name].css'),
-
+        new PurifyCSSPlugin({
+            paths: glob.sync(path.join(__dirname, 'index.html')),
+            minimize: inProduction
+        }),
         new webpack.LoaderOptionsPlugin({
             minimize: inProduction
-        })
+        }),
     ]
 }
 

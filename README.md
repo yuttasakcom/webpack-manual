@@ -9,6 +9,7 @@
 - [Sass](#sass)
 - [Extract](#extract)
 - [Relative URL](#relative_url)
+- [Purify CSS](#purify_css)
 
 ## Init
 `npm init -y`<br>
@@ -144,4 +145,19 @@ plugins: [
         name: 'images/[name].[hash].[ext]'
     }
 }
+```
+
+## Purify_CSS
+ติดตั้ง `npm i -D purifycss-webpack purify-css`<br>
+เพิ่ม plugin<br>
+```javascript
+--- require
+const glob = require('glob');
+const PurifyCSSPlugin = require('purifycss-webpack');
+
+---plugin
+new PurifyCSSPlugin({
+    paths: glob.sync(path.join(__dirname, 'index.html')),
+    minimize: inProduction
+})
 ```
