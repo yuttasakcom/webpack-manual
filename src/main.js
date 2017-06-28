@@ -1,3 +1,2 @@
-require('./assets/css/main.css')
+require('./assets/css/main.scss')
 
-class Person {}

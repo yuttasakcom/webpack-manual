@@ -1,13 +1,13 @@
 ## Webpack 101
 ## สารบัญ
-- บทที่ 1
-  - [Init Webpack](#init)
-  - [Build Webpack](#build)
-  - [Watch Webpack](#watch)
-- บทที่ 2
-  - [Loader](#loader)
-  - [Babel](#babel)
-  - [Minification](#minification)
+- [Init Webpack](#init)
+- [Build Webpack](#build)
+- [Watch Webpack](#watch)
+- [Loader](#loader)
+- [Babel](#babel)
+- [Minification](#minification)
+- [Sass](#sass)
+- [Extract](#extract)
 
 ## Init
 `npm init -y`<br>
@@ -94,3 +94,40 @@ if (process.env.NODE_EN === 'production') {
     "prod": "NODE_ENV=production webpack"
 },
 ```
+
+## Sass
+ติดตั้ง sass-load & node-sass พิมพ์คำสั่ง `npm install sass-loader node-sass --save-dev`
+เพิ่ม rules ที่ webpack.config.js<br>
+```javascript
+{
+    test: /\.s[ac]ss$/,
+    use: ['style-loader', 'css-loader', 'sass-loader']
+}
+```
+
+## Extract
+ติดตั้ง extract พิมพ์คำสั่ง `npm install --save-dev extract-text-webpack-plugin`<br>
+ลิงค์อ้างอิง [extract-text-webpack-plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin)<br>
+ลิงค์อ้างอิง [webpack loaderoptions plugin](https://webpack.js.org/plugins/loader-options-plugin/)
+แก้ไข rules ที่ webpack.config.js ดังนี้<br>
+```javascript
+module: {
+    rules: [
+        ...
+        {
+            test: /\.s[ac]ss$/,
+            use: ExtractTextPlugin.extract({
+                use: ['css-loader', 'sass-loader'],
+                fallback: 'style-loader'
+            })
+        }
+    ]
+},
+plugins: [
+    ...
+    new webpack.LoaderOptionsPlugin({
+        minimize: inProduction
+    })
+]
+```
+/\*หมายเหตุ\*/ ค่า inProduction มาจาก var inProduction = (process.env.NODE_ENV === 'prod')
