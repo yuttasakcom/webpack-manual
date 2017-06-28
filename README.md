@@ -4,7 +4,7 @@
   - [Init Webpack](#init)
   - [Build Webpack](#build)
   - [Watch Webpack](#watch)
-
+- บทที่ 2
 ## Init
 `npm init -y`<br>
 `npm install webpack --save-dev`<br>
@@ -28,3 +28,20 @@ Use --help to display the CLI options.
     "watch": "npm run build -- --watch"
 },
 ```
+
+## Config
+สร้างไฟล์ webpack.config.js `touch webpack.config.js`<br>
+โดยโครงสร้างคร่าวๆ เริ่มต้นจะประกอบด้วย
+```javascript
+const webpack = require('webpack')
+const path    = require('path')
+
+module.exports = {
+    entry: path.resolve(__dirname, './src/main.js'),
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: 'bundle.js'
+    }
+}
+```
+/\*หมายเหตุ\*/ แก้ไข script การ build ที่ package.json เป็น `"build": "webpack"`
