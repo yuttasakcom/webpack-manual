@@ -13,12 +13,12 @@
 - [Long-Term Caching](#long-term_caching)
 - [Optimization Image](#optimization_image)
 - [Manifests](#manifests)
-- [HTML TEMPLATE](#html_template)
-- [Webpack Define Plugin](#webpack_define_plugin)
-- [Extract Text Plugin](#extract_text_plugin)
-- [Copy Webpack Plugin](#copy_webpack_plugin)
-- [Image Webpack Loader](#image_webpack_loader)
-- [Vendor Splitting](#vendor_splitting)
+- [HTML TEMPLATE](#html-template)
+- [Webpack Define Plugin](#webpack-define-plugin)
+- [Extract Text Plugin](#extract-text-plugin)
+- [Copy Webpack Plugin](#copy-webpack-plugin)
+- [Image Webpack Loader](#image-webpack-loader)
+- [Vendor Splitting](#vendor-splitting)
 
 ## Init
 `npm init -y`<br>
