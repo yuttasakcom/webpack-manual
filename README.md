@@ -338,7 +338,7 @@ entry: {
 ---
 plugins: [
   new webpack.optimize.CommonsChunkPlugin({
-    name: 'vendor'
+    names: ['vendor', 'manifest']
   }),
 ]
 ```
