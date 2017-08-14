@@ -235,7 +235,7 @@ new CleanWebpackPlugin(['dist'], {
 
 ## Manifests
 
-## HTML EMPLATE
+## HTML TEMPLATE
 ติดตั้ง `npm i -D html-webpack-plugin`<br>
 ```javascript
 --- require
@@ -253,7 +253,7 @@ new HtmlWebpackPlugin({
 }),
 ```
 
-## Webpack define plugin
+## WEBPACK DEFINE PLUGIN
 > สำหรับ production
 ```javascript
 plugins: [
