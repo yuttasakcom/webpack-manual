@@ -17,6 +17,8 @@
 - [Webpack Define Plugin](#webpack_define_plugin)
 - [Extract Text Plugin](#extract_text_plugin)
 - [Copy Webpack Plugin](#copy_webpack_plugin)
+- [Image Webpack Loader](#image_webpack_loader)
+- [Vendor Splitting](#vendor_splitting)
 
 ## Init
 `npm init -y`<br>
@@ -66,7 +68,8 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loaders: ['babel-loader']
+        loaders: ['babel-loader'],
+        exclude: /node_modules/
       }
     ]
   }
@@ -268,6 +271,18 @@ plugins: [
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 ---
+module: {
+  rules: [
+    {
+      loader: ExtractTextPlugin.extract({
+        loader: 'css-loader'
+      }),
+      test: /\.css$/
+    }
+  ]
+}
+
+---
 plugins: [
   new ExtractTextPlugin('[name].[contenthash].css'),
 ]
@@ -287,5 +302,43 @@ plugins: [
       ignore: ['.*']
     }
   ]),
+]
+```
+
+## Image Webpack Loader
+```
+  npm install --save-dev image-webpack-loader url-loader
+```
+```javascript
+---
+module: {
+  rules: [
+    {
+      test: /\.(jpe?g|png|gif|svg)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: { limit: 40000 }
+        },
+        'image-webpack-loader'
+      ]
+    }
+  ]
+}
+```
+
+## Vendor Splitting
+```javascript
+---
+entry: {
+  ...
+  vendor: ['react', 'react-dom', 'react-vue'] 
+},
+
+---
+plugins: [
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor'
+  }),
 ]
 ```
