@@ -234,6 +234,19 @@ new CleanWebpackPlugin(['dist'], {
 ```
 
 ## Manifests
+```javascript
+---
+plugins: [
+  function () {
+    this.plugin('done', stats => {
+      require('fs').writeFileSync(
+        path.join(__dirname, 'dist/manifest.json'),
+        JSON.stringify(stats.toJson())
+      )
+    })
+  }
+]
+```
 
 ## HTML TEMPLATE
 ติดตั้ง `npm i -D html-webpack-plugin`<br>
