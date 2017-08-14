@@ -34,8 +34,8 @@ Use --help to display the CLI options.
 เพิ่ม script เพื่อ run command ที่ package.json ดังนี้<br>
 ```json
 "scripts": {
-    "build": "webpack src/main.js dist/bundle.js",
-    "watch": "npm run build -- --watch"
+  "build": "webpack src/main.js dist/bundle.js",
+  "watch": "npm run build -- --watch"
 },
 ```
 
@@ -43,31 +43,32 @@ Use --help to display the CLI options.
 สร้างไฟล์ webpack.config.js `touch webpack.config.js`<br>
 โดยโครงสร้างคร่าวๆ เริ่มต้นจะประกอบด้วย
 ```javascript
-const webpack = require('webpack')
-const path    = require('path')
+const path = require('path')
 
 module.exports = {
-    entry: path.resolve(__dirname, './src/main.js'),
-    output: {
-        path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js'
-    }
+  entry: {
+    app: './src/index.js',
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name][chunkhash].js',
+    publicPath: '/'
+  }
 }
 ```
-/\*หมายเหตุ\*/ แก้ไข script การ build ที่ package.json เป็น `"build": "webpack"`
 
 ## Loader
 ติดตั้ง css-loader & transformers style พิมพ์คำสั่ง `npm install css-loader style-loader --save-dev`<br>
 สร้าง rule ใน webpack.config.js ประมาณนี้<br>
 ```javascript
 module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
-            }
-        ]
+  rules: [
+    {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
     }
+  ]
+}
 ```
 
 ## Babel
@@ -75,29 +76,29 @@ module: {
 ลิงค์อ้างอิง [Babel](https://babeljs.io/docs/setup/#installation)<br>
 เพิ่ม rules `{ test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }`<br>
 
-ติดตั้ง babel-cli & babel-preset-es2015 พิมพ์คำสั่ง `npm install --save-dev babel-cli babel-preset-es2015`<br>
-สร้างไฟล์ .bablerc แล้วกำหนดค่าดังนี้ `{ "presets": ["es2015"] }`
+ติดตั้ง babel-cli & babel-preset-es2015 พิมพ์คำสั่ง `npm install --save-dev babel-cli babel-preset-es2015 babel-preset-stage-2`<br>
+สร้างไฟล์ .bablerc แล้วกำหนดค่าดังนี้ `{ "presets": ["es2015", "stage-2"] }`
 
 ## Minification
 สร้าง plugins ใน webpack.config.js `plugins: []`<br>
 เพิ่มเงื่อนไขการ minifile เฉพาะ production ที่ webpack.config.js<br>
 ```javascript
 module.exports = {
-    ...
-    plugins: []
+  ...
+  plugins: []
 }
 if (process.env.NODE_EN === 'production') {
-    module.exports.plugins.push(
-        new webpack.optimize.UglifyJsPlugin()
-    )
+  module.exports.plugins.push(
+    new webpack.optimize.UglifyJsPlugin()
+  )
 } 
 ```
 เพิ่ม scripts production ที่ package.json `"prod": "NODE_ENV=production webpack"`<br>
 แก้ไข scripts ใหม่ดังนี้<br>
 ```json
 "scripts": {
-    "dev": "webpack --watch",
-    "prod": "NODE_ENV=production webpack"
+  "dev": "webpack --watch",
+  "prod": "NODE_ENV=production webpack"
 },
 ```
 
@@ -106,8 +107,8 @@ if (process.env.NODE_EN === 'production') {
 เพิ่ม rules ที่ webpack.config.js<br>
 ```javascript
 {
-    test: /\.s[ac]ss$/,
-    use: ['style-loader', 'css-loader', 'sass-loader']
+  test: /\.s[ac]ss$/,
+  use: ['style-loader', 'css-loader', 'sass-loader']
 }
 ```
 
@@ -118,22 +119,22 @@ if (process.env.NODE_EN === 'production') {
 แก้ไข rules ที่ webpack.config.js ดังนี้<br>
 ```javascript
 module: {
-    rules: [
-        ...
-        {
-            test: /\.s[ac]ss$/,
-            use: ExtractTextPlugin.extract({
-                use: ['css-loader', 'sass-loader'],
-                fallback: 'style-loader'
-            })
-        }
-    ]
+  rules: [
+    ...
+    {
+      test: /\.s[ac]ss$/,
+      use: ExtractTextPlugin.extract({
+        use: ['css-loader', 'sass-loader'],
+        fallback: 'style-loader'
+      })
+    }
+  ]
 },
 plugins: [
-    ...
-    new webpack.LoaderOptionsPlugin({
-        minimize: inProduction
-    })
+  ...
+  new webpack.LoaderOptionsPlugin({
+    minimize: inProduction
+  })
 ]
 ```
 /\*หมายเหตุ\*/ ค่า inProduction มาจาก var inProduction = (process.env.NODE_ENV === 'prod')
@@ -143,11 +144,11 @@ plugins: [
 เพิ่ม rule<br>
 ```javascript
 {
-    test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-    loader: 'file-loader',
-    options: {
-        name: 'images/[name].[hash].[ext]'
-    }
+  test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
+  loader: 'file-loader',
+  options: {
+    name: 'img/[name].[hash:7].[ext]'
+  }
 }
 ```
 
@@ -161,8 +162,8 @@ const PurifyCSSPlugin = require('purifycss-webpack');
 
 --- plugin
 new PurifyCSSPlugin({
-    paths: glob.sync(path.join(__dirname, 'index.html')),
-    minimize: inProduction
+  paths: glob.sync(path.join(__dirname, 'index.html')),
+  minimize: inProduction
 })
 ```
 
@@ -175,19 +176,19 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 --- module
 entry: {
-    main: './src/main.js',
-    verdor: ['jquery']
+  main: './src/main.js',
+  verdor: ['jquery']
 },
 output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].[chunkhash].js'
+  path: path.resolve(__dirname, 'dist'),
+  filename: '[name].[chunkhash].js'
 }
 
 --- plugin
 new CleanWebpackPlugin(['dist'], {
-    _root: __dirname,
-    verbose: true,
-    dry: false
+  _root: __dirname,
+  verbose: true,
+  dry: false
 })
 ```
 
@@ -196,20 +197,20 @@ new CleanWebpackPlugin(['dist'], {
 ```javascript
 --- plugin
 {
-    test: /\.(svg|eot|ttf|woff|woff2)$/,
-    use: 'file-loader'
+  test: /\.(svg|eot|ttf|woff|woff2)$/,
+  use: 'file-loader'
 },
 {
-    test: /\.(png|jpe?g|gif)$/,
-    loaders: [
-        {
-            loader: 'file-loader',
-            options: {
-                name: 'images/[name].[hash].[ext]'
-            }
-        },
-        'img-loader'
-    ]
+  test: /\.(png|jpe?g|gif)$/,
+  loaders: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: 'img/[name].[hash:7].[ext]'
+      }
+    },
+    'img-loader'
+  ]
 }
 ```
 
@@ -223,12 +224,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 --- plugin
 new HtmlWebpackPlugin({
-    template: 'index.html',
-    inject: true,
-    minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-    },
+  template: 'index.html',
+  inject: true,
+  minify: {
+    removeComments: true,
+    collapseWhitespace: true,
+    removeAttributeQuotes: true
+  },
 }),
 ```
