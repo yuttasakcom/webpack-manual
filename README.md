@@ -14,6 +14,9 @@
 - [Optimization Image](#optimization_image)
 - [Manifests](#manifests)
 - [HTML TEMPLATE](#html_template)
+- [Webpack Define Plugin](#webpack_define_plugin)
+- [Extract Text Plugin](#extract_text_plugin)
+- [Copy Webpack Plugin](#copy_webpack_plugin)
 
 ## Init
 `npm init -y`<br>
@@ -53,6 +56,19 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name][chunkhash].js',
     publicPath: '/'
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        loaders: ['babel-loader']
+      }
+    ]
   }
 }
 ```
@@ -232,4 +248,44 @@ new HtmlWebpackPlugin({
     removeAttributeQuotes: true
   },
 }),
+```
+
+## Webpack Define Plugin
+> สำหรับ production
+```javascript
+plugins: [
+  new webpack.DefinePlugin({
+    'process.env': {
+      'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }
+  }),
+]
+```
+
+## Extract Text Plugin
+```javascript
+---
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+---
+plugins: [
+  new ExtractTextPlugin('[name].[contenthash].css'),
+]
+```
+
+## Copy Webpack Plugin
+```javascript
+---
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+---
+plugins: [
+  new CopyWebpackPlugin([
+    {
+      from: path.resolve(__dirname, 'static'),
+      to: 'static',
+      ignore: ['.*']
+    }
+  ]),
+]
 ```
