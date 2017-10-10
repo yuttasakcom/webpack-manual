@@ -1,4 +1,6 @@
-## Webpack 101
+## Webpack Manual
+> คู่มือการใช้งาน Webpack ฉบับ YoProgrammer
+
 ## สารบัญ
 - [Init Webpack](#init)
 - [Build Webpack](#build)
