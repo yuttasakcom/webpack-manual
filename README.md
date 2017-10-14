@@ -21,6 +21,7 @@
 - [Copy Webpack Plugin](#copy-webpack-plugin)
 - [Image Webpack Loader](#image-webpack-loader)
 - [Vendor Splitting](#vendor-splitting)
+- [Provide Plugin](#provide-plugin)
 
 ## Init
 `npm init -y`<br>
@@ -355,5 +356,16 @@ plugins: [
   new webpack.optimize.CommonsChunkPlugin({
     names: ['vendor', 'manifest']
   }),
+]
+```
+
+## Provide Plugin
+```javascript
+---
+plugins: [
+  new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+  })
 ]
 ```
