@@ -22,6 +22,7 @@
 - [Image Webpack Loader](#image-webpack-loader)
 - [Vendor Splitting](#vendor-splitting)
 - [Provide Plugin](#provide-plugin)
+- [Source Map](#source-map)
 
 ## Init
 `npm init -y`<br>
@@ -368,4 +369,11 @@ plugins: [
       jQuery: 'jquery'
   })
 ]
+```
+
+## Source Map
+```javascript
+...
+devtool: 'cheap-module-eval-source-map',
+...
 ```
